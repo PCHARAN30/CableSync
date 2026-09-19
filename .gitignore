@@ -1,6 +1,14 @@
 backend/.env
 backend/node_modules/
+backend/dist/
+operator-portal/node_modules/
+operator-portal/dist/
+subscriber-portal/node_modules/
+subscriber-portal/dist/
 frontend/node_modules/
 frontend/.npm-cache/
 frontend/dist/
+node_modules/
+.env
+.env.*
 npm-debug.log*
