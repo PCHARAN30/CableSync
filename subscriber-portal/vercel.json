@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    { "source": "/customer-api/(.*)", "destination": "https://cablesync-h7r0.onrender.com/customer-api/$1" },
+    { "source": "/api/(.*)", "destination": "https://cablesync-h7r0.onrender.com/api/$1" },
+    { "source": "/health", "destination": "https://cablesync-h7r0.onrender.com/health" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
