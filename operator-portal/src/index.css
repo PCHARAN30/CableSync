@@ -1,0 +1,499 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  /* Dynamic Tailwind RGB color channels - Clean Modern Light Web ERP Theme */
+  --color-paper: 248 250 252;          /* #f8fafc - Crisp, high-contrast light slate background */
+  --color-card: 255 255 255;           /* #ffffff - Pure crisp white card surface */
+  --color-ink: 15 23 42;               /* #0f172a - Deep slate primary text (WCAG AAA readability) */
+  --color-ink-soft: 71 85 105;         /* #475569 - Crisp readable secondary text */
+  --color-hairline: 226 232 240;       /* #e2e8f0 - Crisp subtle divider/border */
+  --color-accent: 37 99 235;           /* #2563eb - Vibrant Royal CableSync Blue */
+  --color-accent-strong: 29 78 216;    /* #1d4ed8 - Deep Royal Blue */
+  --color-paid: 5 150 105;             /* #059669 - Clear Emerald */
+  --color-paid-soft: 236 253 245;      /* #ecfdf5 - Mint Soft */
+  --color-due: 220 38 38;              /* #dc2626 - Clear Crimson */
+  --color-due-soft: 254 242 242;       /* #fef2f2 - Rose Soft */
+  --color-partial: 217 119 6;          /* #d97706 - Amber/Orange */
+  --color-partial-soft: 255 251 235;   /* #fffbeb - Amber Soft */
+  --color-partial-border: 253 230 138; /* #fde68a */
+
+  /* Component variables */
+  --bg-color: #f8fafc;
+  --text-color: #0f172a;
+  --card-color: #ffffff;
+  --panel-bg: #ffffff;
+  --border-color: #e2e8f0;
+  --muted-text: #475569;
+  --shadow-color: rgba(15, 23, 42, 0.08);
+  --accent: #2563eb;
+  --accent-strong: #1d4ed8;
+  --surface-tint: #eff6ff;
+  --hero-start: #0f172a;
+  --hero-end: #1e293b;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: var(--bg-color);
+  background-image: radial-gradient(circle at 10% 0%, rgba(37, 99, 235, .04), transparent 28rem), radial-gradient(circle at 95% 6%, rgba(5, 150, 105, .04), transparent 26rem);
+  color: var(--text-color);
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+button, input, select { font: inherit; }
+
+button, a, select, input {
+  touch-action: manipulation;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+::selection { background: rgba(37, 99, 235, .18); }
+
+/* EYE PROTECT DARK THEME: Warm, glare-free, reduced blue-light night palette */
+html.dark,
+body.dark,
+body.dark-mode {
+  color-scheme: dark;
+  /* Dynamic Tailwind RGB color channels - Eye Protect Dark Palette */
+  --color-paper: 18 22 32;             /* #121620 - Soothing eye-comfort deep slate night background */
+  --color-card: 26 32 44;              /* #1a202c - Slightly elevated warm dark slate surface */
+  --color-ink: 232 237 245;            /* #e8edf5 - Gentle warm off-white (glare-free, high legibility) */
+  --color-ink-soft: 148 163 184;       /* #94a3b8 - Calming eye-protect slate */
+  --color-hairline: 45 55 72;          /* #2d3748 - Soft dark border */
+  --color-accent: 56 189 248;          /* #38bdf8 - Calming sky blue */
+  --color-accent-strong: 96 165 250;   /* #60a5fa - Soft electric blue */
+  --color-paid: 52 211 153;            /* #34d399 - Gentle eye-protect emerald */
+  --color-paid-soft: 6 78 59;          /* #064e3b - Deep soothing emerald tint */
+  --color-due: 248 113 113;            /* #f87171 - Gentle eye-protect coral */
+  --color-due-soft: 69 26 26;          /* #451a1a - Deep soothing rose tint */
+  --color-partial: 251 191 36;         /* #fbbf24 - Warm eye-protect amber */
+  --color-partial-soft: 69 44 11;      /* #452c0b - Deep soothing amber tint */
+  --color-partial-border: 146 64 14;   /* #92400e */
+
+  /* Component variables */
+  --bg-color: #121620;
+  --text-color: #e8edf5;
+  --card-color: #1a202c;
+  --panel-bg: #1e2536;
+  --border-color: #2d3748;
+  --muted-text: #94a3b8;
+  --shadow-color: rgba(0, 0, 0, 0.4);
+  --accent: #38bdf8;
+  --accent-strong: #60a5fa;
+  --surface-tint: #1e293b;
+  --hero-start: #141824;
+  --hero-end: #1e2536;
+}
+
+html.dark body,
+body.dark,
+body.dark-mode {
+  background-color: var(--bg-color);
+  background-image: radial-gradient(circle at 10% 0%, rgba(56, 189, 248, .05), transparent 28rem), radial-gradient(circle at 95% 6%, rgba(52, 211, 153, .04), transparent 26rem);
+}
+
+.app-page {
+  min-height: 100vh;
+  background: transparent;
+}
+
+/* Mobile bottom navigation fallback classes */
+.mobile-nav {
+  display: none;
+}
+
+.surface-card {
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 20px -2px var(--shadow-color);
+}
+
+/* Desktop top navigation, rendered inside TopBar for >=768px viewports */
+.desktop-nav {
+  display: none;
+}
+.desktop-nav-item {
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+  padding: .45rem .85rem;
+  border-radius: .6rem;
+  font-size: .82rem;
+  font-weight: 500;
+  color: var(--muted-text);
+  text-decoration: none;
+  transition: background .15s ease, color .15s ease;
+}
+.desktop-nav-item:hover {
+  color: var(--text-color);
+  background: var(--surface-tint);
+}
+.desktop-nav-item.active {
+  color: var(--accent);
+  background: var(--surface-tint);
+  font-weight: 700;
+}
+
+@media (min-width: 768px) {
+  .desktop-nav { display: flex; }
+}
+
+/* Custom Image Status Badges */
+.badge-img-light {
+  display: inline-block;
+}
+.badge-img-dark {
+  display: none;
+}
+body.dark-mode .badge-img-light,
+html.dark .badge-img-light {
+  display: none !important;
+}
+body.dark-mode .badge-img-dark,
+html.dark .badge-img-dark {
+  display: inline-block !important;
+}
+
+.btn-prism, .btn-orbit, .btn-quiet {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  border-radius: .85rem;
+  font-weight: 700;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.btn-prism {
+  color: white;
+  background: linear-gradient(135deg, #bd882f, var(--accent-strong));
+  box-shadow: 0 10px 22px -12px var(--accent-strong);
+}
+.btn-prism:hover { transform: translateY(-2px); box-shadow: 0 16px 26px -14px var(--accent-strong); }
+.btn-orbit { color: var(--text-color); background: var(--card-color); border: 1px solid var(--border-color); }
+.btn-orbit:hover { transform: translateY(-2px); border-color: var(--accent); box-shadow: 0 10px 22px -17px var(--shadow-color); }
+.btn-quiet { color: var(--accent-strong); background: var(--surface-tint); }
+.btn-quiet:hover { background: color-mix(in srgb, var(--accent) 18%, var(--card-color)); }
+
+/* Tabular figures everywhere numbers appear, so ledger columns line up */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* The signature element: an ink-stamp status badge, styled like a rubber
+   stamp pressed at a slight angle - PAID in forest ink, DUE in sealing-wax
+   red, PARTIAL in vibrant orange. Used consistently on the dashboard, list, and details views. */
+.payment-stamp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  border: 2px solid currentColor;
+  border-radius: 6px;
+  transform: rotate(-3deg);
+  background: transparent;
+  position: relative;
+  font-family: inherit;
+  user-select: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.payment-stamp:hover {
+  transform: rotate(0deg) scale(1.04);
+}
+
+.payment-stamp::before {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border: 1px solid currentColor;
+  border-radius: 3px;
+  pointer-events: none;
+}
+
+.payment-stamp > span {
+  display: block;
+  padding: 2px 10px;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.payment-stamp.paid {
+  color: #1e734c;
+  background: rgba(30, 115, 76, 0.04);
+}
+
+.payment-stamp.due {
+  color: #be1e2d;
+  background: rgba(190, 30, 45, 0.04);
+}
+
+.payment-stamp.partial {
+  color: #ea580c;
+  background: rgba(234, 88, 12, 0.04);
+}
+
+/* Reduced-motion respect */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* =========================================================
+   CUSTOMER ADD / EDIT MODAL
+   ========================================================= */
+
+.customer-form-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+
+  background: rgba(20, 22, 28, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.customer-form-modal {
+  width: min(1080px, 100%);
+  height: min(900px, calc(100vh - 32px));
+
+  display: flex;
+  flex-direction: column;
+
+  background: var(--card-color);
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+
+  box-shadow:
+    0 30px 80px -25px rgba(0, 0, 0, 0.35);
+
+  overflow: hidden;
+}
+
+/* ---------- HEADER ---------- */
+
+.customer-form-header {
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 20px 28px;
+
+  background: var(--card-color);
+  border-bottom: 1px solid var(--border-color);
+
+  position: relative;
+  z-index: 2;
+}
+
+.customer-form-header h1 {
+  margin: 0;
+  font-family: 'IBM Plex Serif', Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.customer-form-header p {
+  margin: 4px 0 0;
+  color: var(--muted-text);
+  font-size: .88rem;
+}
+
+/* ---------- CLOSE ---------- */
+
+.customer-form-close {
+  width: 40px;
+  height: 40px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+
+  background: transparent;
+  color: var(--muted-text);
+
+  cursor: pointer;
+
+  transition:
+    background .15s ease,
+    color .15s ease,
+    border-color .15s ease;
+}
+
+.customer-form-close:hover {
+  background: var(--surface-tint);
+  color: var(--text-color);
+  border-color: var(--accent);
+}
+
+/* ---------- BODY ---------- */
+
+.customer-form-body {
+  flex: 1 1 auto;
+  min-height: 0;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  padding: 28px;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ---------- FORM ---------- */
+
+.customer-form-grid {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 24px;
+}
+
+.customer-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.customer-form-field input,
+.customer-form-field select,
+.customer-form-field textarea {
+  width: 100%;
+}
+
+/* ---------- ERROR ---------- */
+
+.customer-form-error {
+  grid-column: 1 / -1;
+
+  margin: 0;
+  padding: 10px 12px;
+
+  border-radius: 10px;
+
+  background: rgba(182, 69, 50, .08);
+  color: #b64532;
+
+  font-size: .88rem;
+}
+
+/* ---------- FOOTER ---------- */
+
+.customer-form-footer {
+  flex: 0 0 auto;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+
+  padding: 16px 28px;
+
+  background: var(--card-color);
+  border-top: 1px solid var(--border-color);
+
+  box-shadow: 0 -8px 20px -20px var(--shadow-color);
+
+  position: relative;
+  z-index: 2;
+}
+
+.customer-form-cancel,
+.customer-form-save {
+  min-width: 120px;
+  padding: 10px 18px;
+
+  border-radius: 10px;
+
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.customer-form-cancel {
+  border: 1px solid var(--border-color);
+  background: transparent;
+  color: var(--text-color);
+}
+
+.customer-form-cancel:hover {
+  background: var(--surface-tint);
+}
+
+.customer-form-save {
+  border: 0;
+  background: var(--accent);
+  color: white;
+  box-shadow: 0 10px 24px -14px var(--accent-strong);
+}
+
+.customer-form-save:hover {
+  background: var(--accent-strong);
+}
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 767px) {
+  .customer-form-overlay {
+    padding: 0;
+    align-items: stretch;
+  }
+
+  .customer-form-modal {
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+
+    border-radius: 0;
+    border: 0;
+  }
+
+  .customer-form-header {
+    padding: 16px 18px;
+  }
+
+  .customer-form-body {
+    padding: 20px 18px;
+  }
+
+  .customer-form-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .customer-form-footer {
+    padding:
+      12px 18px
+      calc(12px + env(safe-area-inset-bottom));
+
+    justify-content: stretch;
+  }
+
+  .customer-form-cancel,
+  .customer-form-save {
+    flex: 1;
+  }
+}

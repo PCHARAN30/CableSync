@@ -1,0 +1,17 @@
+{
+  "short_name": "CableSync",
+  "name": "CableSync - Cable Operator Management",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#0d1117",
+  "theme_color": "#c69214",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "scope": "/"
+}

@@ -3,15 +3,19 @@
   "version": "1.0.0",
   "private": true,
   "workspaces": [
-    "frontend",
-    "backend"
+    "backend",
+    "operator-portal",
+    "subscriber-portal"
   ],
   "scripts": {
-    "dev": "concurrently -n \"backend,frontend\" -c \"blue,green\" \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev": "concurrently -n \"backend,operator,subscriber\" -c \"blue,green,magenta\" \"npm run dev:backend\" \"npm --prefix operator-portal run dev\" \"npm --prefix subscriber-portal run dev\"",
     "dev:backend": "node backend/server.js",
-    "dev:frontend": "npm --prefix frontend run dev",
+    "dev:operator": "npm --prefix operator-portal run dev",
+    "dev:subscriber": "npm --prefix subscriber-portal run dev",
+    "build:operator": "npm --prefix operator-portal run build",
+    "build:subscriber": "npm --prefix subscriber-portal run build",
     "seed": "node backend/seed.js",
-    "build": "npm --prefix frontend run build",
+    "build": "npm run build:operator && npm run build:subscriber",
     "start": "node backend/server.js",
     "test:billing": "node --test backend/utils/billing.test.js",
     "lint": "node -e \"process.exit(0)\""
