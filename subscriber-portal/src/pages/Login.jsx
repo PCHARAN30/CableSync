@@ -10,10 +10,21 @@ export default function Login() {
   const navigate = useNavigate();
 
   async function handleLogin() {
+    const normalizedPhone = phone.trim();
+    const normalizedCafNumber = cafNumber.trim();
+
+    if (!normalizedPhone && !normalizedCafNumber) {
+      setError('Enter your mobile number or CAF number.');
+      return;
+    }
+
     setLoading(true);
     setError('');
     try {
-      const res = await api.post('/customer-api/auth/customer/login', { phone, cafNumber });
+      const res = await api.post('/customer-api/auth/customer/login', {
+        phone: normalizedPhone,
+        cafNumber: normalizedCafNumber,
+      });
       if (res.data?.success && res.data.token) {
         localStorage.setItem('cablesync_subscriber_token', res.data.token);
         navigate('/dashboard');
@@ -31,11 +42,11 @@ export default function Login() {
         <h1 style={{ marginTop: 0 }}>Subscriber Portal</h1>
         <p>Sign in with your registered mobile number or CAF number.</p>
 
-        <label style={{ display: 'block', marginBottom: 8 }}>Mobile Number (optional)</label>
-        <input value={phone} onChange={(e) => setPhone(e.target.value)} style={{ marginBottom: 14 }} />
+        <label style={{ display: 'block', marginBottom: 8 }}>Mobile Number</label>
+        <input value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Enter mobile number or leave blank" style={{ marginBottom: 14 }} />
 
-        <label style={{ display: 'block', marginBottom: 8 }}>CAF Number (optional)</label>
-        <input value={cafNumber} onChange={(e) => setCafNumber(e.target.value)} style={{ marginBottom: 14 }} />
+        <label style={{ display: 'block', marginBottom: 8 }}>CAF Number</label>
+        <input value={cafNumber} onChange={(e) => setCafNumber(e.target.value)} placeholder="Enter CAF number or leave blank" style={{ marginBottom: 14 }} />
 
         {error && <p style={{ color: '#b91c1c' }}>{error}</p>}
         <button onClick={handleLogin} style={{ width: '100%', padding: 12, border: 'none', borderRadius: 10, background: '#0f172a', color: '#fff' }} disabled={loading}>{loading ? 'Signing in...' : 'Sign In'}</button>
