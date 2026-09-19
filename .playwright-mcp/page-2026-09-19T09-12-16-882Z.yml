@@ -1,0 +1,57 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e7]:
+          - link "C CableSync" [ref=e8] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e9]: C
+            - generic [ref=e10]: CableSync
+          - generic [ref=e11]:
+            - generic [ref=e12]: /
+            - generic [ref=e13]: Customers
+        - navigation "Primary navigation" [ref=e15]:
+          - link "Dashboard" [ref=e16] [cursor=pointer]:
+            - /url: /
+          - link "Customers" [ref=e22] [cursor=pointer]:
+            - /url: /customers
+          - link "Collections" [ref=e27] [cursor=pointer]:
+            - /url: /reports/collection-history
+          - link "Reports" [ref=e31] [cursor=pointer]:
+            - /url: /reports
+          - link "Tickets" [ref=e34] [cursor=pointer]:
+            - /url: /tickets
+      - generic [ref=e37]:
+        - link "Subscriber Portal" [ref=e38] [cursor=pointer]:
+          - /url: /customer
+        - link "Notifications and support tickets" [ref=e45] [cursor=pointer]:
+          - /url: /tickets
+  - main [ref=e50]:
+    - generic [ref=e52]:
+      - generic [ref=e53]:
+        - generic [ref=e54]:
+          - heading "Customers" [level=1] [ref=e55]
+          - generic [ref=e56]: "0"
+        - paragraph [ref=e57]: Manage customer subscriptions & collections
+      - generic [ref=e58]:
+        - link "Import customers" [ref=e59] [cursor=pointer]:
+          - /url: /import
+          - generic [ref=e63]: Import
+        - link "Add Customer" [ref=e64] [cursor=pointer]:
+          - /url: /customers/new
+    - generic [ref=e69]:
+      - textbox "Search customers" [ref=e71]:
+        - /placeholder: Search name, phone, CAF, or area…
+      - generic [ref=e72]:
+        - generic [ref=e73]:
+          - generic [ref=e74]: Status
+          - combobox [ref=e75]:
+            - option "All Statuses" [selected]
+            - option "Paid"
+            - option "Partial"
+            - option "Due"
+        - generic [ref=e76]:
+          - generic [ref=e77]: Area
+          - combobox [ref=e78]:
+            - option "All Areas" [selected]
+    - generic [ref=e79]: Loading subscribers…
