@@ -22,38 +22,47 @@ async function loginCustomer(req, res) {
     const phone = normalizePhone(rawPhone);
     const cafNumber = String(req.body.cafNumber || "").trim();
 
-    if (!phone || phone.length !== 10) {
+    const hasValidPhone = phone.length === 10;
+    const hasCafNumber = Boolean(cafNumber);
+
+    if (!hasValidPhone && !hasCafNumber) {
+      return res.status(400).json({
+        success: false,
+        message: "Enter a valid mobile number or CAF number.",
+      });
+    }
+
+    if (rawPhone && !hasValidPhone) {
       return res.status(400).json({
         success: false,
         message: "Please enter a valid 10-digit mobile number.",
       });
     }
 
-    if (!cafNumber) {
-      return res.status(400).json({
-        success: false,
-        message: "CAF number is required to sign in.",
-      });
-    }
+    const phoneFilter = {
+      $or: [
+        { phone },
+        { phone: `+91${phone}` },
+        { phone: `91${phone}` },
+        { phone: { $regex: `${phone}$` } },
+      ],
+    };
+    const cafFilter = {
+      cafNumber: {
+        $regex: `^${cafNumber.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}$`,
+        $options: "i",
+      },
+    };
+    const identityFilter =
+      hasValidPhone && hasCafNumber
+        ? { $and: [phoneFilter, cafFilter] }
+        : hasValidPhone
+          ? phoneFilter
+          : cafFilter;
 
     const customer = await Customer.findOne({
-      $and: [
-        {
-          $or: [
-            { phone: phone },
-            { phone: `+91${phone}` },
-            { phone: `91${phone}` },
-            { phone: { $regex: `${phone}$` } },
-          ],
-        },
-        {
-          cafNumber: {
-            $regex: `^${cafNumber.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}$`,
-            $options: "i",
-          },
-        },
-        { isActive: { $ne: false } },
-      ],
+      ...identityFilter,
+      isActive: { $ne: false },
     });
 
     if (!customer) {

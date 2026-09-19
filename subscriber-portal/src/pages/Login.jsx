@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import api from '../services/api.js';
 
 export default function Login() {
-  const [phone, setPhone] = useState('9391529371');
-  const [cafNumber, setCafNumber] = useState('CAF100001');
+  const [phone, setPhone] = useState('');
+  const [cafNumber, setCafNumber] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -29,12 +29,12 @@ export default function Login() {
     <div className="container" style={{ maxWidth: 520, paddingTop: 80 }}>
       <div className="card">
         <h1 style={{ marginTop: 0 }}>Subscriber Portal</h1>
-        <p>Sign in with your registered mobile number and CAF number.</p>
+        <p>Sign in with your registered mobile number or CAF number.</p>
 
-        <label style={{ display: 'block', marginBottom: 8 }}>Mobile Number</label>
+        <label style={{ display: 'block', marginBottom: 8 }}>Mobile Number (optional)</label>
         <input value={phone} onChange={(e) => setPhone(e.target.value)} style={{ marginBottom: 14 }} />
 
-        <label style={{ display: 'block', marginBottom: 8 }}>CAF Number</label>
+        <label style={{ display: 'block', marginBottom: 8 }}>CAF Number (optional)</label>
         <input value={cafNumber} onChange={(e) => setCafNumber(e.target.value)} style={{ marginBottom: 14 }} />
 
         {error && <p style={{ color: '#b91c1c' }}>{error}</p>}
