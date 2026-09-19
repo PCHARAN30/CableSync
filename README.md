@@ -1,4 +1,4 @@
-# CableSync v2
+# CableSync
 
 A lightweight web app for a single cable operator to manage customers and payments — Khatabook + Contacts, not a full accounting suite.
 
